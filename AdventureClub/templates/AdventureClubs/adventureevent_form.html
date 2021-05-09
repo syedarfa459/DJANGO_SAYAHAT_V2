@@ -1,0 +1,27 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+
+    <form name="image" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <h6>Choose the club which is creating event</h6>
+
+        {%for c in clubs%}
+         <input type="radio" name="club" value="{{c}}">
+      <label for="{{c}}">{{c}}</label><br>
+        {%endfor%}
+        {{form.as_p}}
+        <input class="btn btn-primary" type="submit" value="Create Event">
+    </form>
+    <br>
+    <div>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}

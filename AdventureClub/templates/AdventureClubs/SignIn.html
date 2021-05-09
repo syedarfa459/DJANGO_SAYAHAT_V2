@@ -1,0 +1,28 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+<!--    <form method="POST" enctype="multipart/form-data">-->
+<!--    {% csrf_token %}-->
+<!--    <input value="Username:" type="text" name="username">-->
+<!--    <input value="Password:" type="password" name="password">-->
+<!--    <input value="Submit" type="submit">-->
+<!--    </form>-->
+         <div class="container">
+        <form method="post">
+            {% csrf_token %}
+<!--            {% if form.non_field_errors %}-->
+<!--            {% for error in form.non_field_errors %}-->
+<!--                <h4>{{error}}</h4>-->
+<!--            {% endfor %}-->
+<!--            {% endif %}-->
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="Submit"><br><br>
+            <a href="{% url 'club:password_reset' %} "> Reset your password?</a>
+            {% if msg %}
+            <p class="alert alert-danger">{{msg}}</p>
+
+            {% endif %}
+
+        </form>
+         </div>
+{% endblock %}

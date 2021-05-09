@@ -1,0 +1,65 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+
+<h1>Siyahat Homepage</h1>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<h1>Sort Clubs city Wise</h1>
+{%for c in city%}
+{%for city in c.values%}
+<form method="POST">
+    {%csrf_token%}
+    <button name="city" value="{{city}}">{{city}}</button>
+
+</form>
+{%endfor%}
+{%endfor%}
+
+{%for obj in club%}
+  <h1> Club name: {{obj.club_name}}</h1>
+   <h1>  Contact:{{obj.contact}}</h1>
+    <h1> Email:{{obj.email}}</h1>
+    <h1> City:{{obj.city}}</h1>
+{%endfor%}
+
+
+<div class="jumbotron">
+<h1>Featured clubs</h1>
+    {%for fc in FC%}
+    <h6>{{fc.club_name}}</h6>
+    <h6>{{fc.contact}}</h6>
+    <h6>{{fc.club_address}}</h6>
+    <hr>
+    <hr>
+    {%endfor%}
+</div>
+
+<div class="jumbotron">
+<h1>Featured Events</h1>
+    {%for fe in FE%}
+<!--    <img src="{{fe.image.url}}" height="100px" width="100px">-->
+<!--    <h6>{{fe.event_by}}</h6>-->
+<!--    <h6>{{fe.overview}}</h6>-->
+<!--    <hr>-->
+<!--    <hr>-->
+<!--    -->
+    <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{fe.image.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{fe.event_by}}</h5>
+    <a href="#" class="btn btn-primary">fe.overview</a>
+  </div>
+</div>
+    {%endfor%}
+
+
+
+</div>
+{% endblock %}

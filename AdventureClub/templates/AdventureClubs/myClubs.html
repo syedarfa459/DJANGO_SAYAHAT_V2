@@ -1,0 +1,17 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+<h1>Welcome {{request.user}}</h1>
+
+<h2>Your Registered Clubs:</h2>
+
+
+<ul>
+{%for c in clubs%}
+    <li>{{c.club_name}}</li>
+
+    {%empty%}
+    <h1>You don't have any registered club</h1>
+{%endfor%}
+</ul>
+{% endblock %}

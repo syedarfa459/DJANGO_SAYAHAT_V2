@@ -1,0 +1,20 @@
+{% extends 'AdventureClubs/base.html' %}
+
+{% block body_block %}
+<h1>Following are the ongoing events, you can book any</h1>
+
+{%for event in event%}
+<h1>Event by : {{event.event_by}}</h1>
+<h2>{{event.title}}</h2>
+<img src="{{event.image.url}}" height="100px" width="100px">
+<h2>{{event.overview}}</h2>
+<h2>{{event.event_start_date}}</h2>
+<h2>{{event.event_end_date}}</h2>
+<h2>Contct : {{event.event_by.contact}}</h2>
+<a href="https://api.whatsapp.com/send?phone={{event.event_by.contact}}"><button class="btn btn-success"> Book using Whatsapp</button></a>
+<hr>
+<hr>
+<hr>
+{%endfor%}
+
+{% endblock %}
